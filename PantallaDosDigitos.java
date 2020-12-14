@@ -16,6 +16,7 @@ public class PantallaDosDigitos
     private int valorLimite;
     // El valor actual que tiene almacenado la pantalla
     private int valorAlmacenado;
+    private int sumaValor;
 
     /**
      * Constructor de la clase PantallaDosDigitos
@@ -27,6 +28,7 @@ public class PantallaDosDigitos
         valorInicial = valorDeInicio;
         valorAlmacenado = valorInicial;
         valorLimite = limitePantalla;
+        sumaValor = 0;
     }
 
     /**
@@ -61,10 +63,11 @@ public class PantallaDosDigitos
      * Incrementa el valor de la pantalla. Si llega al limite cambia al valor inicial.
      */
     public void incrementaValorAlmacenado() {
-        int tamanoIntervalo = valorLimite - valorInicial;
-        int valorIncrementado = valorAlmacenado + 1;
-        int valorIncrementadoReajustado = valorIncrementado - valorInicial;
-        int valorIncrementadoEnElIntervalo = valorIncrementadoReajustado % tamanoIntervalo;
-        valorAlmacenado =  valorIncrementadoEnElIntervalo + valorInicial;
+        int valorIncrementado = sumaValor + 1;
+        sumaValor = valorInicial + valorIncrementado;
+        valorAlmacenado = sumaValor;
+        if(valorAlmacenado > valorLimite - 1){
+            valorAlmacenado = valorInicial;
+        }
     }
 }
